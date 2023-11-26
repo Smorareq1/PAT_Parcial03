@@ -12,16 +12,22 @@ using namespace std;
 class TimeMap
 {
 
-private: 
-	unordered_map<string, vector<pair<int, string>> > mp;
-	
+private:
+    struct Pair
+	{
+		string value;
+		int timestamp;
+	};
+
+	unordered_map<string, vector<Pair>> map;
+
 public:
+    TimeMap();
+	~TimeMap();
 
-	TimeMap();
+    void set(std::string key, std::string value, int timestamp);
 
-	void set(string key, string value, int timestamp);
-
-	string get(string key, int timestamp);
+    std::string get(std::string key, int timestamp);
 
 };
 
