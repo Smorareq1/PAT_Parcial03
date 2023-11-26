@@ -25,9 +25,9 @@ public:
     TimeMap();
 	~TimeMap();
 
-    void set(std::string key, std::string value, int timestamp);
+    void set(string key, string value, int timestamp);
 
-    std::string get(std::string key, int timestamp);
+    string get(string key, int timestamp);
 
 };
 

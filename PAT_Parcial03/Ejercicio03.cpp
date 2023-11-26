@@ -19,7 +19,7 @@ void TimeMap::set(std::string key, std::string value, int timestamp) {
 string TimeMap::get(std::string key, int timestamp) {
     if(map.find(key) == map.end()) return "";
     
-    const auto& values = map[key];
+    const vector<Pair>& values = map[key];
 
     int top = values.size();
     int bot = 0;
@@ -29,11 +29,17 @@ string TimeMap::get(std::string key, int timestamp) {
     if(values[top - 1].timestamp <= timestamp) return values[top - 1].value;
 
     while(bot < top) {
-		mid = bot + (top - bot) / 2;
+		mid = (top + bot) >> 1;
 
-		if(values[mid].timestamp <= timestamp) {
-			bot = mid + 1;
-		} else {
+		if(values[mid].timestamp == timestamp) {
+            return values[mid].value;
+		} 
+
+        if (values[mid].timestamp < timestamp) {
+            bot = mid + 1;
+        }
+
+        else {
 			top = mid;
 		}
 	}
